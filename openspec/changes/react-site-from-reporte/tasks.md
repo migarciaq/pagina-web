@@ -47,13 +47,13 @@ Chain strategy: stacked-to-main
 
 ## Phase 2: Site Shell (PR 2 — shell slice)
 
-- [ ] 2.1 RED: `src/App.test.jsx` asserting 5 landmark sections and nav anchors matching section ids — fails, no `App.jsx`.
-- [ ] 2.2 RED: `SkipLink.test.jsx` (focus moves to main on activation), `Header.test.jsx` (sticky class on scroll, mobile menu toggle, focus-visible).
-- [ ] 2.3 GREEN: `src/data/navigation.js` (section id/label pairs, no PII).
-- [ ] 2.4 GREEN: `src/components/layout/SkipLink.jsx`, `Header.jsx`, `Footer.jsx`.
-- [ ] 2.5 GREEN: `src/hooks/useScrollSpy.js`, `useScrollReveal.js` (IntersectionObserver, cleanup on unmount).
-- [ ] 2.6 GREEN: `src/App.jsx`, `src/main.jsx`, `src/App.module.css`; port `src/styles/tokens.css`, `src/styles/global.css` from `styles.css`.
-- [ ] 2.7 REFACTOR: extract shared shell rules into CSS Modules; verify 2.1-2.2 pass.
+- [x] 2.1 RED: `src/App.test.jsx` asserting 5 landmark sections and nav anchors matching section ids — fails, no `App.jsx`.
+- [x] 2.2 RED: `SkipLink.test.jsx` (focus moves to main on activation), `Header.test.jsx` (sticky class on scroll, mobile menu toggle, focus-visible).
+- [x] 2.3 GREEN: `src/data/navigation.js` (section id/label pairs, no PII).
+- [x] 2.4 GREEN: `src/components/layout/SkipLink.jsx`, `Header.jsx`, `Footer.jsx`.
+- [x] 2.5 GREEN: `src/hooks/useScrollSpy.js`, `useScrollReveal.js` (IntersectionObserver, cleanup on unmount).
+- [x] 2.6 GREEN: `src/App.jsx`, `src/main.jsx`, `src/App.module.css`; port `src/styles/tokens.css`, `src/styles/global.css` from `styles.css`.
+- [x] 2.7 REFACTOR: extract shared shell rules into CSS Modules; verify 2.1-2.2 pass.
 
 ## Phase 3: CV Content (PR 3 — content slice)
 
