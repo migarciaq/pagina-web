@@ -1,0 +1,11 @@
+# PII source — never publish (see openspec/changes/react-site-from-reporte)
+Reporte.pdf
+
+# Node
+node_modules/
+dist/
+npm-debug.log*
+.npm/
+
+# Editor/OS
+.DS_Store
