@@ -57,11 +57,11 @@ Chain strategy: stacked-to-main
 
 ## Phase 3: CV Content (PR 3 — content slice)
 
-- [ ] 3.1 GREEN: populate `src/data/cv.js` with real redacted CV fields (no cedula/address/exact birth date); run `npm test -- cv.pii` to confirm 1.5 now passes.
-- [ ] 3.2 RED: fixture-based `Perfil.test.jsx`, `Formacion.test.jsx`, `ExperienciaLaboral.test.jsx`, `Habilidades.test.jsx`, `Contacto.test.jsx` (headings, counts, a11y roles, `mailto:migarciaq@unal.edu.co` href) — fail, section components absent.
-- [ ] 3.3 GREEN: `src/components/sections/*.jsx`, `src/components/ui/Section.jsx`, `Card.jsx`, `Tag.jsx`, `TimelineItem.jsx`.
-- [ ] 3.4 Wire sections into `App.jsx` via props from `cv.js`; verify 3.2 and `App.test.jsx` (2.1) pass.
-- [ ] 3.5 RED then GREEN by construction: `App.test.jsx` asserts no publications/projects/teaching/language-table content renders.
+- [x] 3.1 GREEN: populate `src/data/cv.js` with real redacted CV fields (no cedula/address/exact birth date); run `npm test -- cv.pii` to confirm 1.5 now passes.
+- [x] 3.2 RED: fixture-based `Perfil.test.jsx`, `Formacion.test.jsx`, `ExperienciaLaboral.test.jsx`, `Habilidades.test.jsx`, `Contacto.test.jsx` (headings, counts, a11y roles, `mailto:migarciaq@unal.edu.co` href) — fail, section components absent.
+- [x] 3.3 GREEN: `src/components/sections/*.jsx`, `src/components/ui/Section.jsx`, `Card.jsx`, `Tag.jsx`, `TimelineItem.jsx`.
+- [x] 3.4 Wire sections into `App.jsx` via props from `cv.js`; verify 3.2 and `App.test.jsx` (2.1) pass.
+- [x] 3.5 RED then GREEN by construction: `App.test.jsx` asserts no publications/projects/teaching/language-table content renders.
 
 ## Phase 4: Pages Deployment (PR 4 — deploy slice)
 

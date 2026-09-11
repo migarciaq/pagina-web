@@ -1,0 +1,31 @@
+.content {
+  max-width: 42rem;
+}
+
+.nombre {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.titular {
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-top: var(--space-1);
+}
+
+.ubicacion {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+}
+
+.resumen {
+  margin-top: var(--space-6);
+  color: var(--color-text-secondary);
+}
+
+.experienciaTotal {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}

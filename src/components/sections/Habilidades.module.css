@@ -1,0 +1,21 @@
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.categoryTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tagItem {
+  list-style: none;
+}

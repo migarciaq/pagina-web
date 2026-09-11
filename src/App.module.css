@@ -7,8 +7,3 @@
 .main {
   flex: 1;
 }
-
-.section {
-  padding-top: var(--space-20);
-  padding-bottom: var(--space-20);
-}
