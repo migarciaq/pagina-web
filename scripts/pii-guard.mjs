@@ -6,7 +6,7 @@
 // treated as "clean" — see design.md "PII guard target" decision).
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, join } from 'node:path';
-import { PII_PATTERNS } from './pii-rules.mjs';
+import { PII_PATTERNS, isNationalIdCodeContextFalsePositive } from './pii-rules.mjs';
 
 const BINARY_EXTENSIONS = new Set([
   '.png',
@@ -47,7 +47,19 @@ export function scanFile(filePath) {
   lines.forEach((line, index) => {
     for (const { id, re } of PII_PATTERNS) {
       re.lastIndex = 0;
-      if (re.test(line)) {
+      let match;
+      let hasRealMatch = false;
+
+      while ((match = re.exec(line))) {
+        if (id === 'national-id' && isNationalIdCodeContextFalsePositive(line, match.index, match[0].length)) {
+          continue;
+        }
+
+        hasRealMatch = true;
+        break;
+      }
+
+      if (hasRealMatch) {
         findings.push({ file: filePath, line: index + 1, ruleId: id });
       }
     }

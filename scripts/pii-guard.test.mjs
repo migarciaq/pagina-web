@@ -82,6 +82,84 @@ describe('pii-guard.mjs — scanDirectory', () => {
   });
 });
 
+describe('pii-guard.mjs — national-id false positives in production bundles', () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), 'pii-guard-fp-test-'));
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('does not flag an all-digit CSS hex color value', () => {
+    writeFileSync(
+      join(dir, 'bundle.css'),
+      '.card{box-shadow:0 10px 15px -3px #00000012,0 4px 6px #00000012}\n',
+    );
+
+    const { findings, filesScanned } = scanDirectory(dir);
+
+    expect(filesScanned).toBe(1);
+    expect(findings).toEqual([]);
+  });
+
+  it('does not flag a minified switch/case bitmask constant', () => {
+    writeFileSync(
+      join(dir, 'bundle.js'),
+      'function f(e){switch(e){case 2:s=250;break;case 5:s=1073741823;break;case 4:s=1e4}}\n',
+    );
+
+    const { findings } = scanDirectory(dir);
+
+    expect(findings).toEqual([]);
+  });
+
+  it('does not flag a minified bitwise-masked numeric literal', () => {
+    writeFileSync(join(dir, 'bundle.js'), 'var ht=256,gt=262144,_t=4194304;var r=e&3932160;\n');
+
+    const { findings } = scanDirectory(dir);
+
+    expect(findings).toEqual([]);
+  });
+
+  it('does not flag a minified numeric literal after a `return` keyword', () => {
+    writeFileSync(
+      join(dir, 'bundle.js'),
+      'function d(e){switch(e){case a:return 268435456;default:return 32}}\n',
+    );
+
+    const { findings } = scanDirectory(dir);
+
+    expect(findings).toEqual([]);
+  });
+
+  it('does not flag a minified numeric literal immediately closing a block', () => {
+    writeFileSync(join(dir, 'bundle.js'), 'e.flags&=-16777217}function bl(e,t){}\n');
+
+    const { findings } = scanDirectory(dir);
+
+    expect(findings).toEqual([]);
+  });
+
+  it('still flags a real national-id-shaped number inside a quoted string literal', () => {
+    writeFileSync(join(dir, 'bundle.js'), 'var t=React.createElement("a",{href:"tel:3008729952"});\n');
+
+    const { findings } = scanDirectory(dir);
+
+    expect(findings.map((finding) => finding.ruleId)).toContain('national-id');
+  });
+
+  it('still flags a real national-id-shaped number rendered as bare HTML text content', () => {
+    writeFileSync(join(dir, 'bundle.html'), '<span>3008729952</span>\n');
+
+    const { findings } = scanDirectory(dir);
+
+    expect(findings.map((finding) => finding.ruleId)).toContain('national-id');
+  });
+});
+
 describe('pii-guard.mjs — CLI exit codes', () => {
   let dir;
 

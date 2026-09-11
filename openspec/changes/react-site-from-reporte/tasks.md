@@ -65,7 +65,7 @@ Chain strategy: stacked-to-main
 
 ## Phase 4: Pages Deployment (PR 4 — deploy slice)
 
-- [ ] 4.1 Create `.github/workflows/deploy.yml`: `build`/`deploy` jobs, actions pinned by SHAs from 0.1, `node-version` from 0.2, `permissions: {contents: read, pages: write, id-token: write}`, `concurrency: {group: pages, cancel-in-progress: true}`, steps `checkout`→`setup-node`→`npm ci`→`npm test`→`npm run build`→`npm run guard:pii`→`configure-pages`→`upload-pages-artifact`(`path: ./dist`)→`deploy-pages`.
-- [ ] 4.2 Run `npm run build`; verify `dist/index.html` asset URLs are prefixed `/pagina-web/`.
+- [x] 4.1 Create `.github/workflows/deploy.yml`: `build`/`deploy` jobs, actions pinned by SHAs from 0.1, `node-version` from 0.2, `permissions: {contents: read, pages: write, id-token: write}`, `concurrency: {group: pages, cancel-in-progress: true}`, steps `checkout`→`setup-node`→`npm ci`→`npm test`→`npm run build`→`npm run guard:pii`→`configure-pages`→`upload-pages-artifact`(`path: ./dist`)→`deploy-pages`.
+- [x] 4.2 Run `npm run build`; verify `dist/index.html` asset URLs are prefixed `/pagina-web/`.
 - [ ] 4.3 Confirm repo Settings → Pages → Build and deployment → Source = "GitHub Actions" (manual; document in PR description).
 - [ ] 4.4 Push to `main`; verify workflow run passes tests, `guard:pii` exits 0, Pages deploy succeeds; open the live URL and confirm all 5 sections render with real data and no PII strings.
