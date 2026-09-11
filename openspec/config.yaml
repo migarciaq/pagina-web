@@ -1,0 +1,49 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Vite + React SPA (migrated from a vanilla static site baseline).
+  Content sourced from Reporte.pdf (never published — see .gitignore).
+  Architecture: single-page CV, anchor-scroll sections, no router.
+  Testing: Vitest + @testing-library/react + jsdom, run via `npm test`.
+  Style: design tokens ported to global CSS, per-component CSS Modules.
+
+strict_tdd: true
+# React stack selected in sdd-design (Vite + React + Vitest); the workspace
+# test command (`npm test`) now exists, so the fail-closed override from
+# sdd-init no longer applies. Strict TDD is active for this workspace.
+
+projects:
+  - path: .
+    stack: vite-react
+    test_command: npm test
+    coverage_command: null
+    lint_command: null
+    typecheck_command: null
+    format_command: null
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Frame the React migration scope around content parity with Reporte.pdf
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Select the React tooling stack (bundler, router, test runner) explicitly
+    - Document architecture decisions with rationale
+    - Include a GitHub Pages deployment plan (base path, build output, CI)
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+    - First task unit established the test runner selected in design (Vitest)
+  apply:
+    guidelines:
+      - Follow existing code patterns established by the Vite/React scaffold
+    tdd: true
+    test_command: npm test
+  verify:
+    test_command: npm test
+    build_command: npm run build
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
