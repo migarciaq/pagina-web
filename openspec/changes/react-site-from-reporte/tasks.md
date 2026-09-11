@@ -67,5 +67,5 @@ Chain strategy: stacked-to-main
 
 - [x] 4.1 Create `.github/workflows/deploy.yml`: `build`/`deploy` jobs, actions pinned by SHAs from 0.1, `node-version` from 0.2, `permissions: {contents: read, pages: write, id-token: write}`, `concurrency: {group: pages, cancel-in-progress: true}`, steps `checkout`→`setup-node`→`npm ci`→`npm test`→`npm run build`→`npm run guard:pii`→`configure-pages`→`upload-pages-artifact`(`path: ./dist`)→`deploy-pages`.
 - [x] 4.2 Run `npm run build`; verify `dist/index.html` asset URLs are prefixed `/pagina-web/`.
-- [ ] 4.3 Confirm repo Settings → Pages → Build and deployment → Source = "GitHub Actions" (manual; document in PR description).
-- [ ] 4.4 Push to `main`; verify workflow run passes tests, `guard:pii` exits 0, Pages deploy succeeds; open the live URL and confirm all 5 sections render with real data and no PII strings.
+- [x] 4.3 Confirm repo Settings → Pages → Build and deployment → Source = "GitHub Actions" (set via `gh api -X POST repos/migarciaq/pagina-web/pages -f build_type=workflow`).
+- [x] 4.4 Push to `main`; verify workflow run passes tests, `guard:pii` exits 0, Pages deploy succeeds; open the live URL and confirm all 5 sections render with real data and no PII strings. Live at https://migarciaq.github.io/pagina-web/ — HTTP 200, deploy workflow green, no PII digit sequences in served HTML. A follow-up commit (`5e5c5d8`) fixed stale `<title>`/meta tags left over from the original fictional site.
